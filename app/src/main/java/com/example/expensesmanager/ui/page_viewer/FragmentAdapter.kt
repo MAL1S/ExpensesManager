@@ -1,4 +1,4 @@
-package com.example.expensesmanager.ui
+package com.example.expensesmanager.ui.page_viewer
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

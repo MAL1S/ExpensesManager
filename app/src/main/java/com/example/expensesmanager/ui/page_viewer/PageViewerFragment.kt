@@ -1,4 +1,4 @@
-package com.example.expensesmanager.ui
+package com.example.expensesmanager.ui.page_viewer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentPageViewerBinding
+import com.example.expensesmanager.ui.page_viewer.FragmentAdapter
 import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.google.android.material.tabs.TabLayout
 

@@ -11,12 +11,4 @@ class ExpenseFragmentViewModel: ViewModel() {
 
     val allExpenses = REPOSITORY.allExpenses
     val allIncome = REPOSITORY.allIncome
-
-    fun insert(money: Money, onSuccess: () -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) {
-            REPOSITORY.insert(money) {
-                onSuccess()
-            }
-        }
-    }
 }

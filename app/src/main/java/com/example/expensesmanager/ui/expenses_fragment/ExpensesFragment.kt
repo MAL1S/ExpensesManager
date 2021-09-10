@@ -6,17 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
-import com.example.expensesmanager.R
-import com.example.expensesmanager.database.AppRoomDatabase
 import com.example.expensesmanager.databinding.FragmentExpensesBinding
 import com.example.expensesmanager.models.Money
-import com.example.expensesmanager.ui.ExpensesAdapter
 import com.example.expensesmanager.utils.*
 
 class ExpensesFragment : Fragment() {
@@ -55,8 +49,8 @@ class ExpensesFragment : Fragment() {
 
         mViewModel = ViewModelProvider(this).get(ExpenseFragmentViewModel::class.java)
         mViewModel.allExpenses.observe(this, mObserverList)
-        mViewModel.insert(Money(type = EXPENSE, title = "Eda", moneyAmount = 100)) {
-            Log.d(LOG, "inserted")
-        }
+//        mViewModel.insert(Money(type = EXPENSE, title = "Eda", moneyAmount = 100)) {
+//            Log.d(LOG, "inserted")
+//        }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.expensesmanager.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,8 @@ import androidx.navigation.findNavController
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.ActivityMainBinding
 import com.example.expensesmanager.utils.APP_ACTIVITY
+import com.example.expensesmanager.utils.LOG
+import com.example.expensesmanager.utils.log
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,8 +44,17 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
         mBinding.fab.setOnClickListener {
             navController.navigate(R.id.action_pageViewerFragment_to_addNewRecordFragment)
-            mBinding.fab.visibility = View.GONE
-            mBinding.bottomInfo.visibility = View.GONE
+//            mBinding.fab.visibility = View.GONE
+//            mBinding.bottomInfo.visibility = View.GONE
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        log("resumed")
+
+//        mBinding.fab.visibility = View.VISIBLE
+//        mBinding.bottomInfo.visibility = View.VISIBLE
     }
 }

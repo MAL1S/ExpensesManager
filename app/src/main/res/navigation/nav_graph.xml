@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/pageViewerFragment"
-        android:name="com.example.expensesmanager.ui.PageViewerFragment"
+        android:name="com.example.expensesmanager.ui.page_viewer.PageViewerFragment"
         android:label="fragment_page_viewer"
         tools:layout="@layout/fragment_page_viewer" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNewRecordFragment"
-        android:name="com.example.expensesmanager.ui.AddNewRecordFragment"
+        android:name="com.example.expensesmanager.ui.add_new_record.AddNewRecordFragment"
         android:label="fragment_add_new_record"
         tools:layout="@layout/fragment_add_new_record" >
         <action

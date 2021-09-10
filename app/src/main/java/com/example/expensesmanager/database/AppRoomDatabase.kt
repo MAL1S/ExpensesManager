@@ -18,10 +18,9 @@ abstract class AppRoomDatabase: RoomDatabase() {
         @Synchronized
         fun getInstance(context: Context): AppRoomDatabase {
             return if (database == null) {
-                database = Room.databaseBuilder(
+                database = Room.inMemoryDatabaseBuilder(
                     context,
                     AppRoomDatabase::class.java,
-                    "database"
                 ).build()
                 database as AppRoomDatabase
             } else database as AppRoomDatabase

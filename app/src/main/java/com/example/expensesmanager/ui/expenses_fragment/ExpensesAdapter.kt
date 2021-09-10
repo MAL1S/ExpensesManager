@@ -1,4 +1,4 @@
-package com.example.expensesmanager.ui
+package com.example.expensesmanager.ui.expenses_fragment
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import com.example.expensesmanager.R
 import com.example.expensesmanager.models.Money
 import com.example.expensesmanager.utils.EXPENSE
 import com.example.expensesmanager.utils.LOG
-import kotlinx.android.synthetic.main.fragment_expenses.view.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlin.math.roundToInt
 
@@ -41,11 +40,7 @@ class ExpensesAdapter : RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>
     override fun getItemCount(): Int = mExpensesList.size
 
     fun setList(list: List<Money>) {
-        val listq = listOf<Money>(
-            Money(type = EXPENSE, title = "Eda", moneyAmount = 100),
-            Money(type = EXPENSE, title = "123", moneyAmount = 1032)
-        )
-        mExpensesList = listq
+        mExpensesList = list
         Log.d(LOG, "updated")
         notifyDataSetChanged()
     }
