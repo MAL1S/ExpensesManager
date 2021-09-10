@@ -43,13 +43,24 @@ class AddNewRecordFragment : Fragment() {
             val title = mBinding.inputTitle.text.toString()
             val money = mBinding.inputMoney.text.toString().toInt()
 
+            log(money.toString())
+
+            if (CURRENT_TAB == 0) {
+                AppPreference.updateTotalMoney(-1 * money)
+                AppPreference.updateTotalExpensesMoney(money)
+            }
+            else {
+                AppPreference.updateTotalMoney(money)
+                AppPreference.updateTotalIncomeMoney(money)
+            }
+
+            showToast(AppPreference.getTotalExpensesMoney().toString())
+
             mViewModel.insert(Money(
                 type = type,
                 title = title,
                 moneyAmount = money
             )) {
-                if (CURRENT_TAB == 0) AppPreference.updateTotalMoney(-1*money)
-                else AppPreference.updateTotalMoney(money)
                 APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_pageViewerFragment)
             }
         }

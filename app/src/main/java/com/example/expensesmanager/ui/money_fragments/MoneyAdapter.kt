@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
 import com.example.expensesmanager.models.Money
 import com.example.expensesmanager.utils.AppPreference
+import com.example.expensesmanager.utils.EXPENSE
 import com.example.expensesmanager.utils.LOG
 import com.example.expensesmanager.utils.log
 import kotlinx.android.synthetic.main.list_item.view.*
@@ -33,10 +34,17 @@ class MoneyAdapter : RecyclerView.Adapter<MoneyAdapter.ExpensesViewHolder>() {
 
     override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
         holder.title.text = mExpensesList[position].title
-        holder.filler.setGuidelinePercent(1f*mExpensesList[position].moneyAmount / AppPreference.getTotalMoney())
-        log((1f*mExpensesList[position].moneyAmount / AppPreference.getTotalMoney()).toString())
+        if (mExpensesList[position].type == EXPENSE) {
+            holder.filler.setGuidelinePercent(1f * mExpensesList[position].moneyAmount / AppPreference.getTotalExpensesMoney())
+            holder.percent.text = (100f * mExpensesList[position].moneyAmount / AppPreference.getTotalExpensesMoney()).toInt().toString()
+            log(AppPreference.getTotalExpensesMoney().toString())
+        }
+        else {
+            holder.filler.setGuidelinePercent(1f * mExpensesList[position].moneyAmount / AppPreference.getTotalIncomeMoney())
+            holder.percent.text = (100f * mExpensesList[position].moneyAmount / AppPreference.getTotalIncomeMoney()).toInt().toString()
+            log(AppPreference.getTotalIncomeMoney().toString())
+        }
         holder.moneyAmount.text = mExpensesList[position].moneyAmount.toString()
-        holder.percent.text = (100f * mExpensesList[position].moneyAmount / AppPreference.getTotalMoney()).toInt().toString()
     }
 
     override fun getItemCount(): Int = mExpensesList.size

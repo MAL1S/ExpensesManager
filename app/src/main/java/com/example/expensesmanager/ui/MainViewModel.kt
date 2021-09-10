@@ -17,6 +17,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val total: Int
         get() = AppPreference.getTotalMoney()
 
+    val totalExpenses: Int
+        get() = AppPreference.getTotalExpensesMoney()
+
+    val totalIncome: Int
+        get() = AppPreference.getTotalIncomeMoney()
+
+
     private val mContext = application
 
     fun initDatabase() {

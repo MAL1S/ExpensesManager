@@ -41,9 +41,13 @@ class MainActivity : AppCompatActivity() {
         AppPreference.getPreference(this)
 
         mBinding.total.text = AppPreference.getTotalMoney().toString()
+        mBinding.totalExpenses.text = AppPreference.getTotalExpensesMoney().toString()
+        mBinding.totalIncome.text = AppPreference.getTotalIncomeMoney().toString()
 
         mObserverTotal = Observer {
             mBinding.total.text = mViewModel.total.toString()
+            mBinding.totalExpenses.text = mViewModel.totalExpenses.toString()
+            mBinding.totalIncome.text = mViewModel.totalIncome.toString()
         }
 
         mViewModel.allExpenses.observe(this, mObserverTotal)
