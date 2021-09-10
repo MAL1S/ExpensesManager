@@ -9,10 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentAddNewRecordBinding
 import com.example.expensesmanager.models.Money
-import com.example.expensesmanager.utils.APP_ACTIVITY
-import com.example.expensesmanager.utils.CURRENT_TAB
-import com.example.expensesmanager.utils.EXPENSE
-import com.example.expensesmanager.utils.INCOME
+import com.example.expensesmanager.utils.*
 
 class AddNewRecordFragment : Fragment() {
 
@@ -51,6 +48,8 @@ class AddNewRecordFragment : Fragment() {
                 title = title,
                 moneyAmount = money
             )) {
+                if (CURRENT_TAB == 0) AppPreference.updateTotalMoney(-1*money)
+                else AppPreference.updateTotalMoney(money)
                 APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_pageViewerFragment)
             }
         }

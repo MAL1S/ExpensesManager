@@ -1,13 +1,21 @@
-package com.example.expensesmanager.ui.main
+package com.example.expensesmanager.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.example.expensesmanager.database.AppRoomDatabase
 import com.example.expensesmanager.database.AppRoomRepository
+import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.REPOSITORY
 
-class MainViewModel(application: Application): AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
+
+    val allExpenses
+        get() = REPOSITORY.allExpenses
+    val allIncome
+        get() = REPOSITORY.allIncome
+
+    val total: Int
+        get() = AppPreference.getTotalMoney()
 
     private val mContext = application
 

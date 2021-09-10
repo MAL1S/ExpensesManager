@@ -23,6 +23,6 @@ interface {
     -hide bottom panel and add button while scrolling down
 }
 
-find out what to do with income list
+find out what to do with income list-----
 
  */

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.expensesmanager.databinding.FragmentPageViewerBinding
-import com.example.expensesmanager.ui.page_viewer.FragmentAdapter
 import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.CURRENT_TAB
 import com.example.expensesmanager.utils.log

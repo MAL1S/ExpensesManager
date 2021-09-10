@@ -5,4 +5,5 @@
     <string name="total_expenses">Expenses:</string>
     <string name="total_income">Income:</string>
     <string name="percent_sign">%</string>
+    <string name="total">Total:</string>
 </resources>

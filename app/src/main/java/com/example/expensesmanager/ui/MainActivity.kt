@@ -1,17 +1,15 @@
-package com.example.expensesmanager.ui.main
+package com.example.expensesmanager.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.ActivityMainBinding
-import com.example.expensesmanager.utils.APP_ACTIVITY
-import com.example.expensesmanager.utils.LOG
-import com.example.expensesmanager.utils.log
+import com.example.expensesmanager.models.Money
+import com.example.expensesmanager.utils.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
 
     private lateinit var mViewModel: MainViewModel
-
+    private lateinit var mObserverTotal: Observer<List<Money>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +37,22 @@ class MainActivity : AppCompatActivity() {
         APP_ACTIVITY = this
 
         navController = findNavController(R.id.nav_host_fragment)
+
+        AppPreference.getPreference(this)
+
+        mBinding.total.text = AppPreference.getTotalMoney().toString()
+
+        mObserverTotal = Observer {
+            mBinding.total.text = mViewModel.total.toString()
+        }
+
+        mViewModel.allExpenses.observe(this, mObserverTotal)
+        mViewModel.allIncome.observe(this, mObserverTotal)
     }
 
     private fun initListeners() {
         mBinding.fab.setOnClickListener {
             navController.navigate(R.id.action_pageViewerFragment_to_addNewRecordFragment)
-//            mBinding.fab.visibility = View.GONE
-//            mBinding.bottomInfo.visibility = View.GONE
         }
     }
 
@@ -53,8 +60,5 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 
         log("resumed")
-
-//        mBinding.fab.visibility = View.VISIBLE
-//        mBinding.bottomInfo.visibility = View.VISIBLE
     }
 }
