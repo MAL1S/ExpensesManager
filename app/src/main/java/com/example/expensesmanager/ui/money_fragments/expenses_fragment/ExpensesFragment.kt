@@ -1,4 +1,4 @@
-package com.example.expensesmanager.ui.expenses_fragment
+package com.example.expensesmanager.ui.money_fragments.expenses_fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.databinding.FragmentExpensesBinding
 import com.example.expensesmanager.models.Money
+import com.example.expensesmanager.ui.money_fragments.MoneyViewModel
+import com.example.expensesmanager.ui.money_fragments.MoneyAdapter
 import com.example.expensesmanager.utils.*
 
 class ExpensesFragment : Fragment() {
@@ -18,10 +20,10 @@ class ExpensesFragment : Fragment() {
     private var _binding: FragmentExpensesBinding? = null
     private val mBinding get() = _binding!!
 
-    private lateinit var mAdapter: ExpensesAdapter
+    private lateinit var mAdapter: MoneyAdapter
     private lateinit var mRecyclerView: RecyclerView
 
-    private lateinit var mViewModel: ExpenseFragmentViewModel
+    private lateinit var mViewModel: MoneyViewModel
     private lateinit var mObserverList: Observer<List<Money>>
 
     override fun onCreateView(
@@ -37,20 +39,16 @@ class ExpensesFragment : Fragment() {
         super.onStart()
 
         mRecyclerView = mBinding.recyclerView
-        mAdapter = ExpensesAdapter()
+        mAdapter = MoneyAdapter()
         mRecyclerView.adapter = mAdapter
-
 
         mObserverList = Observer {
             val list = sortByPercent(it)
             mAdapter.setList(list)
-            Log.d(LOG, "observed")
+            Log.d(LOG, "observed expenses")
         }
 
-        mViewModel = ViewModelProvider(this).get(ExpenseFragmentViewModel::class.java)
+        mViewModel = ViewModelProvider(this).get(MoneyViewModel::class.java)
         mViewModel.allExpenses.observe(this, mObserverList)
-//        mViewModel.insert(Money(type = EXPENSE, title = "Eda", moneyAmount = 100)) {
-//            Log.d(LOG, "inserted")
-//        }
     }
 }

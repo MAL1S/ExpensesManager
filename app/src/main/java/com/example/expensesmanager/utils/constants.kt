@@ -8,3 +8,4 @@ const val EXPENSE = "expense"
 const val INCOME = "income"
 lateinit var APP_ACTIVITY: MainActivity
 lateinit var REPOSITORY: AppRoomRepository
+var CURRENT_TAB: Int = 0

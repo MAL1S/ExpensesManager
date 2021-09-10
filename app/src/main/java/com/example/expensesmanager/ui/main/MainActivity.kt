@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         mBinding.fab.setOnClickListener {
-
             navController.navigate(R.id.action_pageViewerFragment_to_addNewRecordFragment)
 //            mBinding.fab.visibility = View.GONE
 //            mBinding.bottomInfo.visibility = View.GONE

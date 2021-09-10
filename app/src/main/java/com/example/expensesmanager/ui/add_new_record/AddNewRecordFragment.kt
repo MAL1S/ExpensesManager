@@ -9,9 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentAddNewRecordBinding
 import com.example.expensesmanager.models.Money
-import com.example.expensesmanager.ui.expenses_fragment.ExpenseFragmentViewModel
 import com.example.expensesmanager.utils.APP_ACTIVITY
+import com.example.expensesmanager.utils.CURRENT_TAB
 import com.example.expensesmanager.utils.EXPENSE
+import com.example.expensesmanager.utils.INCOME
 
 class AddNewRecordFragment : Fragment() {
 
@@ -39,7 +40,8 @@ class AddNewRecordFragment : Fragment() {
 
     private fun initListeners() {
         mBinding.buttonAddRecord.setOnClickListener {
-            val type = EXPENSE
+            val type = if (CURRENT_TAB == 0) EXPENSE
+            else INCOME
             val date = "today"
             val title = mBinding.inputTitle.text.toString()
             val money = mBinding.inputMoney.text.toString().toInt()

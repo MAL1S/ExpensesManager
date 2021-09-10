@@ -10,6 +10,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.expensesmanager.databinding.FragmentPageViewerBinding
 import com.example.expensesmanager.ui.page_viewer.FragmentAdapter
 import com.example.expensesmanager.utils.APP_ACTIVITY
+import com.example.expensesmanager.utils.CURRENT_TAB
+import com.example.expensesmanager.utils.log
 import com.google.android.material.tabs.TabLayout
 
 class PageViewerFragment : Fragment() {
@@ -51,6 +53,8 @@ class PageViewerFragment : Fragment() {
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 pager.currentItem = tab?.position!!
+                CURRENT_TAB =  tab.position
+                log(CURRENT_TAB.toString())
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {

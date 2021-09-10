@@ -1,4 +1,4 @@
-package com.example.expensesmanager.ui.expenses_fragment
+package com.example.expensesmanager.ui.money_fragments
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,12 +9,11 @@ import androidx.constraintlayout.widget.Guideline
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
 import com.example.expensesmanager.models.Money
-import com.example.expensesmanager.utils.EXPENSE
 import com.example.expensesmanager.utils.LOG
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlin.math.roundToInt
 
-class ExpensesAdapter : RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
+class MoneyAdapter : RecyclerView.Adapter<MoneyAdapter.ExpensesViewHolder>() {
 
     class ExpensesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.title
@@ -41,7 +40,6 @@ class ExpensesAdapter : RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>
 
     fun setList(list: List<Money>) {
         mExpensesList = list
-        Log.d(LOG, "updated")
         notifyDataSetChanged()
     }
 }
