@@ -1,6 +1,6 @@
 package com.example.expensesmanager.ui
 
-import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +8,23 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.Guideline
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
-import com.example.expensesmanager.models.Expense
+import com.example.expensesmanager.models.Money
+import com.example.expensesmanager.utils.EXPENSE
+import com.example.expensesmanager.utils.LOG
+import kotlinx.android.synthetic.main.fragment_expenses.view.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlin.math.roundToInt
 
-class Adapter: RecyclerView.Adapter<ExpensesViewHolder>() {
+class ExpensesAdapter : RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
 
-    private var mExpensesList = emptyList<Expense>()
+    class ExpensesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val title: TextView = view.title
+        val filler: Guideline = view.filling_guideline
+        val moneyAmount: TextView = view.item_money_amount
+        val percent: TextView = view.item_percentage
+    }
+
+    private var mExpensesList = emptyList<Money>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -22,6 +32,7 @@ class Adapter: RecyclerView.Adapter<ExpensesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
+        holder.title.text = mExpensesList[position].title
         holder.filler.setGuidelinePercent(mExpensesList[position].percent.roundToInt() / 100f)
         holder.moneyAmount.text = mExpensesList[position].moneyAmount.toString()
         holder.percent.text = mExpensesList[position].percent.toString()
@@ -29,14 +40,13 @@ class Adapter: RecyclerView.Adapter<ExpensesViewHolder>() {
 
     override fun getItemCount(): Int = mExpensesList.size
 
-    fun setList(list: List<Expense>) {
-        mExpensesList = list
+    fun setList(list: List<Money>) {
+        val listq = listOf<Money>(
+            Money(type = EXPENSE, title = "Eda", moneyAmount = 100),
+            Money(type = EXPENSE, title = "123", moneyAmount = 1032)
+        )
+        mExpensesList = listq
+        Log.d(LOG, "updated")
         notifyDataSetChanged()
     }
-}
-
-class ExpensesViewHolder(view: View): RecyclerView.ViewHolder(view) {
-    val filler: Guideline = view.filling_guideline
-    val moneyAmount: TextView = view.item_money_amount
-    val percent: TextView = view.item_percentage
 }

@@ -13,8 +13,8 @@ class FragmentAdapter(fm: FragmentManager, lifecycle: Lifecycle): FragmentStateA
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            1 -> return ExpensesFragment()
-            2 -> return ExpensesFragment()
+            0 -> return ExpensesFragment()
+            1 -> return IncomeFragment()
         }
         return ExpensesFragment()
     }

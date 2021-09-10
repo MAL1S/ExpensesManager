@@ -1,18 +1,22 @@
-package com.example.expensesmanager
+package com.example.expensesmanager.ui.main
 
 import android.os.Bundle
 import android.widget.TableLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.expensesmanager.databinding.ActivityMainBinding
 import com.example.expensesmanager.ui.FragmentAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val mBinding get() = _binding!!
+
+    private lateinit var mViewModel: MainViewModel
 
     private lateinit var tabLayout: TabLayout
     private lateinit var pager: ViewPager2
@@ -29,6 +33,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mViewModel.initDatabase()
+
+        APP_ACTIVITY = this
 
     }
 
