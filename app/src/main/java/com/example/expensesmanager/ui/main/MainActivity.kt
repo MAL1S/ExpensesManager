@@ -1,35 +1,32 @@
 package com.example.expensesmanager.ui.main
 
 import android.os.Bundle
-import android.widget.TableLayout
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.ActivityMainBinding
-import com.example.expensesmanager.ui.FragmentAdapter
 import com.example.expensesmanager.utils.APP_ACTIVITY
-import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val mBinding get() = _binding!!
 
+    lateinit var navController: NavController
+
     private lateinit var mViewModel: MainViewModel
 
-    private lateinit var tabLayout: TabLayout
-    private lateinit var pager: ViewPager2
-    private lateinit var adapter: FragmentAdapter
-    private lateinit var fm: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        initViewPager()
         init()
+        initListeners()
     }
 
     private fun init() {
@@ -38,35 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         APP_ACTIVITY = this
 
+        navController = findNavController(R.id.nav_host_fragment)
     }
 
-    private fun initViewPager() {
-        tabLayout = mBinding.tabLayout
-        pager = mBinding.viewPager
-
-        fm = supportFragmentManager
-        adapter = FragmentAdapter(fm, lifecycle)
-        pager.adapter = adapter
-
-        tabLayout.addTab(tabLayout.newTab().setText("Expenses"))
-        tabLayout.addTab(tabLayout.newTab().setText("Income"))
-
-        tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                pager.currentItem = tab?.position!!
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-            }
-        })
-
-        pager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                tabLayout.selectTab(tabLayout.getTabAt(position))
-            }
-        })
+    private fun initListeners() {
+        mBinding.fab.setOnClickListener {
+            navController.navigate(R.id.action_pageViewerFragment_to_addNewRecordFragment)
+            mBinding.fab.visibility = View.GONE
+            mBinding.bottomInfo.visibility = View.GONE
+        }
     }
 }
