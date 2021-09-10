@@ -44,8 +44,7 @@ class ExpensesFragment : Fragment() {
         mRecyclerView.adapter = mAdapter
 
         mObserverList = Observer {
-            val list = sortByPercent(it)
-            mAdapter.setList(list)
+            mAdapter.setList(sortByPercent(it))
             Log.d(LOG, "observed expenses")
         }
 

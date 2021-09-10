@@ -16,13 +16,14 @@ create custom app tool bar {
     -create drawer layout
 }
 
-add total money count to database to correctly display percents
+add total money count to database to correctly display percents -----(done)
+add separated money counts for expenses and income, and for month
 
 interface {
     -remove add button from adding screen
     -hide bottom panel and add button while scrolling down
 }
 
-find out what to do with income list-----
+find out what to do with income list -----(done)
 
  */

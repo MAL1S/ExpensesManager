@@ -9,7 +9,9 @@ import androidx.constraintlayout.widget.Guideline
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
 import com.example.expensesmanager.models.Money
+import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.LOG
+import com.example.expensesmanager.utils.log
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlin.math.roundToInt
 
@@ -31,9 +33,10 @@ class MoneyAdapter : RecyclerView.Adapter<MoneyAdapter.ExpensesViewHolder>() {
 
     override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
         holder.title.text = mExpensesList[position].title
-        holder.filler.setGuidelinePercent(mExpensesList[position].percent.roundToInt() / 100f)
+        holder.filler.setGuidelinePercent(1f*mExpensesList[position].moneyAmount / AppPreference.getTotalMoney())
+        log((1f*mExpensesList[position].moneyAmount / AppPreference.getTotalMoney()).toString())
         holder.moneyAmount.text = mExpensesList[position].moneyAmount.toString()
-        holder.percent.text = mExpensesList[position].percent.toString()
+        holder.percent.text = (100f * mExpensesList[position].moneyAmount / AppPreference.getTotalMoney()).toInt().toString()
     }
 
     override fun getItemCount(): Int = mExpensesList.size

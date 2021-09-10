@@ -9,7 +9,8 @@ fun showToast(msg: String) {
 }
 
 fun sortByPercent(list: List<Money>): List<Money> {
-    return list.sortedBy { it.percent }
+    val res = list.sortedBy { it.moneyAmount }
+    return res.reversed()
 }
 
 fun log(msg: String) {
