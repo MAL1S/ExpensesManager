@@ -13,6 +13,7 @@ import com.example.expensesmanager.databinding.FragmentExpensesBinding
 import com.example.expensesmanager.models.Money
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.MoneyAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.LOG
 import com.example.expensesmanager.utils.sortByPercent
 
@@ -50,5 +51,11 @@ class ExpensesFragment : Fragment() {
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mViewModel.allExpenses.observe(this, mObserverList)
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
+        super.onDestroy()
     }
 }

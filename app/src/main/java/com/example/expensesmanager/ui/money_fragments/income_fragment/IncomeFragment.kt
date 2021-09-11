@@ -13,6 +13,7 @@ import com.example.expensesmanager.databinding.FragmentIncomeBinding
 import com.example.expensesmanager.models.Money
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.MoneyAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.LOG
 import com.example.expensesmanager.utils.log
 import com.example.expensesmanager.utils.sortByPercent
@@ -55,5 +56,11 @@ class IncomeFragment : Fragment() {
 
 
         mViewModel.allIncome.observe(this, mObserverList)
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
+        super.onDestroy()
     }
 }

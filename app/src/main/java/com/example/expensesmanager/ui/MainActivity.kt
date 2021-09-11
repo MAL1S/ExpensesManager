@@ -65,4 +65,10 @@ class MainActivity : AppCompatActivity() {
 
         log("resumed")
     }
+
+    override fun onDestroy() {
+        _binding = null
+        mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
+        super.onDestroy()
+    }
 }

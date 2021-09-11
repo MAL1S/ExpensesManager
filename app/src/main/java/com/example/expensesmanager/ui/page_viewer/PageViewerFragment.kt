@@ -44,10 +44,11 @@ class PageViewerFragment : Fragment() {
 
         fm = APP_ACTIVITY.supportFragmentManager
         adapter = FragmentAdapter(fm, lifecycle)
-        pager.adapter = adapter
-
-        tabLayout.addTab(tabLayout.newTab().setText("Expenses"))
-        tabLayout.addTab(tabLayout.newTab().setText("Income"))
+        if (pager.adapter == null) {
+            pager.adapter = adapter
+            tabLayout.addTab(tabLayout.newTab().setText("Expenses"))
+            tabLayout.addTab(tabLayout.newTab().setText("Income"))
+        }
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -68,5 +69,10 @@ class PageViewerFragment : Fragment() {
                 tabLayout.selectTab(tabLayout.getTabAt(position))
             }
         })
+    }
+
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }
