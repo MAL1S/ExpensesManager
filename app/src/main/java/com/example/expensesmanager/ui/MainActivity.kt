@@ -8,7 +8,6 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.ActivityMainBinding
-import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.utils.*
 
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         mBinding.fab.setOnClickListener {
-            navController.navigate(R.id.action_pageViewerFragment_to_addNewTypeFragment)
+            //navController.navigate(R.id.action_pageViewerFragment_to_addNewTypeFragment)
         }
     }
 

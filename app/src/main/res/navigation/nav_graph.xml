@@ -3,28 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/pageViewerFragment">
+    app:startDestination="@id/pageViewerSourceFragment">
 
     <fragment
-        android:id="@+id/pageViewerFragment"
-        android:name="com.example.expensesmanager.ui.page_viewer.PageViewerFragment"
-        android:label="fragment_page_viewer"
-        tools:layout="@layout/fragment_page_viewer" >
+        android:id="@+id/pageViewerSourceFragment"
+        android:name="com.example.expensesmanager.ui.page_viewer.source.PageViewerSourceFragment"
+        android:label="fragment_page_viewer_source"
+        tools:layout="@layout/fragment_page_viewer_source">
         <action
-            android:id="@+id/action_pageViewerFragment_to_addNewTypeFragment"
-            app:destination="@id/addNewTypeFragment" />
+            android:id="@+id/action_pageViewerSourceFragment_to_addNewSourceFragment"
+            app:destination="@id/addNewSourceFragment" />
+        <action
+            android:id="@+id/action_pageViewerSourceFragment_to_pageViewerRecordFragment"
+            app:destination="@id/pageViewerRecordFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewRecordFragment"
         android:name="com.example.expensesmanager.ui.add_new_record.AddNewRecordFragment"
         android:label="fragment_add_new_record"
-        tools:layout="@layout/fragment_add_new_record" />
-    <fragment
-        android:id="@+id/addNewTypeFragment"
-        android:name="com.example.expensesmanager.ui.add_new_type.AddNewSourceFragment"
-        android:label="AddNewTypeFragment" >
+        tools:layout="@layout/fragment_add_new_record" >
         <action
-            android:id="@+id/action_addNewTypeFragment_to_pageViewerFragment"
-            app:destination="@id/pageViewerFragment" />
+            android:id="@+id/action_addNewRecordFragment_to_pageViewerRecordFragment"
+            app:destination="@id/pageViewerRecordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewSourceFragment"
+        android:name="com.example.expensesmanager.ui.add_new_type.AddNewSourceFragment"
+        android:label="AddNewSourceFragment"
+        tools:layout="@layout/fragment_add_new_source">
+        <action
+            android:id="@+id/action_addNewSourceFragment_to_pageViewerSourceFragment"
+            app:destination="@id/pageViewerSourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pageViewerRecordFragment"
+        android:name="com.example.expensesmanager.ui.page_viewer.record.PageViewerRecordFragment"
+        android:label="PageViewerRecordFragment"
+        tools:layout="@layout/fragment_page_viewer_record">
+        <action
+            android:id="@+id/action_pageViewerRecordFragment_to_addNewRecordFragment"
+            app:destination="@id/addNewRecordFragment" />
+        <action
+            android:id="@+id/action_pageViewerRecordFragment_to_pageViewerSourceFragment"
+            app:destination="@id/pageViewerSourceFragment" />
     </fragment>
 </navigation>

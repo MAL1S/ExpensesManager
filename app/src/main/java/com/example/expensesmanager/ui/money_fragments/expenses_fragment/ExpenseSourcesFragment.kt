@@ -16,6 +16,7 @@ import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.adapter.RecordAdapter
 import com.example.expensesmanager.ui.money_fragments.adapter.SourceAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.LOG
 import com.example.expensesmanager.utils.sortByPercent
 
@@ -57,5 +58,13 @@ class ExpenseSourcesFragment : Fragment() {
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mViewModel.expenseSources.observe(this, mObserverList)
+    }
+
+    companion object {
+        fun click(source: Source) {
+            val bundle = Bundle()
+            bundle.putSerializable("source", source)
+            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_pageViewerRecordFragment)
+        }
     }
 }

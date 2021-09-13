@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.Guideline
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
 import com.example.expensesmanager.models.Source
+import com.example.expensesmanager.ui.money_fragments.expenses_fragment.ExpenseSourcesFragment
 import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.EXPENSE
 import com.example.expensesmanager.utils.log
@@ -21,7 +22,18 @@ class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
         val percent: TextView = view.findViewById(R.id.item_percentage)
     }
 
-    private var mExpensesList = emptyList<Source>()
+    private var mSourcesList = emptyList<Source>()
+
+    override fun onViewAttachedToWindow(holder: SourcesViewHolder) {
+        holder.itemView.setOnClickListener {
+            ExpenseSourcesFragment.click(mSourcesList[holder.adapterPosition])
+        }
+    }
+
+    override fun onViewDetachedFromWindow(holder: SourcesViewHolder) {
+        holder.itemView.setOnClickListener(null)
+        super.onViewDetachedFromWindow(holder)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SourcesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.source_item, parent, false)
@@ -29,27 +41,27 @@ class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SourcesViewHolder, position: Int) {
-        holder.title.text = mExpensesList[position].source
-        if (mExpensesList[position].category == EXPENSE) {
-            holder.filler.setGuidelinePercent(1f * mExpensesList[position].totalMoneyAmount / AppPreference.getTotalExpensesMoney())
+        holder.title.text = mSourcesList[position].source
+        if (mSourcesList[position].category == EXPENSE) {
+            holder.filler.setGuidelinePercent(1f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalExpensesMoney())
             holder.percent.text =
-                (100f * mExpensesList[position].totalMoneyAmount / AppPreference.getTotalExpensesMoney()).toInt()
+                (100f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalExpensesMoney()).toInt()
                     .toString()
             log(AppPreference.getTotalExpensesMoney().toString())
         } else {
-            holder.filler.setGuidelinePercent(1f * mExpensesList[position].totalMoneyAmount / AppPreference.getTotalIncomeMoney())
+            holder.filler.setGuidelinePercent(1f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalIncomeMoney())
             holder.percent.text =
-                (100f * mExpensesList[position].totalMoneyAmount / AppPreference.getTotalIncomeMoney()).toInt()
+                (100f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalIncomeMoney()).toInt()
                     .toString()
             log(AppPreference.getTotalIncomeMoney().toString())
         }
-        holder.moneyAmount.text = mExpensesList[position].totalMoneyAmount.toString()
+        holder.moneyAmount.text = mSourcesList[position].totalMoneyAmount.toString()
     }
 
-    override fun getItemCount(): Int = mExpensesList.size
+    override fun getItemCount(): Int = mSourcesList.size
 
     fun setList(list: List<Source>) {
-        mExpensesList = list
+        mSourcesList = list
         notifyDataSetChanged()
     }
 }

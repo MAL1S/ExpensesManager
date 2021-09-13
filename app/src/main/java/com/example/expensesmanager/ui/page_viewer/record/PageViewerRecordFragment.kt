@@ -1,4 +1,4 @@
-package com.example.expensesmanager.ui.page_viewer
+package com.example.expensesmanager.ui.page_viewer.record
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,20 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.expensesmanager.databinding.FragmentPageViewerBinding
+import com.example.expensesmanager.databinding.FragmentPageViewerRecordBinding
 import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.CURRENT_TAB
 import com.example.expensesmanager.utils.log
 import com.google.android.material.tabs.TabLayout
 
-class PageViewerFragment : Fragment() {
+class PageViewerRecordFragment : Fragment() {
 
-    private var _binding: FragmentPageViewerBinding? = null
+    private var _binding: FragmentPageViewerRecordBinding? = null
     private val mBinding get() = _binding!!
 
     private lateinit var tabLayout: TabLayout
     private lateinit var pager: ViewPager2
-    private lateinit var adapter: FragmentAdapter
+    private lateinit var adapter: FragmentRecordAdapter
     private lateinit var fm: FragmentManager
 
     override fun onCreateView(
@@ -28,7 +28,7 @@ class PageViewerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentPageViewerBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentPageViewerRecordBinding.inflate(layoutInflater, container, false)
         return mBinding.root
     }
 
@@ -43,7 +43,7 @@ class PageViewerFragment : Fragment() {
         pager = mBinding.viewPager
 
         fm = APP_ACTIVITY.supportFragmentManager
-        adapter = FragmentAdapter(fm, lifecycle)
+        adapter = FragmentRecordAdapter(fm, lifecycle)
         if (pager.adapter == null) {
             pager.adapter = adapter
             tabLayout.addTab(tabLayout.newTab().setText("Expenses"))

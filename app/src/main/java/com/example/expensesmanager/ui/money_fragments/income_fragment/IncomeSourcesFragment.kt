@@ -15,6 +15,7 @@ import com.example.expensesmanager.databinding.FragmentExpenseSourcesBinding
 import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.adapter.SourceAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.LOG
 
 class IncomeSourcesFragment : Fragment() {

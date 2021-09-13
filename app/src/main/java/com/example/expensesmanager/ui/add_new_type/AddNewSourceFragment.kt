@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.expensesmanager.R
-import com.example.expensesmanager.databinding.FragmentAddNewTypeBinding
+import com.example.expensesmanager.databinding.FragmentAddNewSourceBinding
 import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.CURRENT_TAB
@@ -16,7 +16,7 @@ import com.example.expensesmanager.utils.INCOME
 
 class AddNewSourceFragment : Fragment() {
 
-    private var _binding: FragmentAddNewTypeBinding? = null
+    private var _binding: FragmentAddNewSourceBinding? = null
     private val mBinding get() = _binding!!
 
     private lateinit var mViewModel: AddNewSourceViewModel
@@ -26,7 +26,7 @@ class AddNewSourceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentAddNewTypeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentAddNewSourceBinding.inflate(layoutInflater, container, false)
         return mBinding.root
     }
 
@@ -49,7 +49,7 @@ class AddNewSourceFragment : Fragment() {
             val t = if (CURRENT_TAB == 0) EXPENSE
             else INCOME
             mViewModel.insertSource(Source(source = s, category = t)) {
-                APP_ACTIVITY.navController.navigate(R.id.action_addNewTypeFragment_to_pageViewerFragment)
+                APP_ACTIVITY.navController.navigate(R.id.action_addNewSourceFragment_to_pageViewerSourceFragment)
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.expensesmanager.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "source_table")
 data class Source(
@@ -10,4 +11,4 @@ data class Source(
     @ColumnInfo val source: String,
     @ColumnInfo val category: String,
     var totalMoneyAmount: Int = 0
-)
+): Serializable
