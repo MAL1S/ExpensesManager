@@ -26,7 +26,7 @@ class PageViewerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPageViewerBinding.inflate(layoutInflater, container, false)
         return mBinding.root

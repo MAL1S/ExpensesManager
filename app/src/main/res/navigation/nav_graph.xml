@@ -11,16 +11,20 @@
         android:label="fragment_page_viewer"
         tools:layout="@layout/fragment_page_viewer" >
         <action
-            android:id="@+id/action_pageViewerFragment_to_addNewRecordFragment"
-            app:destination="@id/addNewRecordFragment" />
+            android:id="@+id/action_pageViewerFragment_to_addNewTypeFragment"
+            app:destination="@id/addNewTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewRecordFragment"
         android:name="com.example.expensesmanager.ui.add_new_record.AddNewRecordFragment"
         android:label="fragment_add_new_record"
-        tools:layout="@layout/fragment_add_new_record" >
+        tools:layout="@layout/fragment_add_new_record" />
+    <fragment
+        android:id="@+id/addNewTypeFragment"
+        android:name="com.example.expensesmanager.ui.add_new_type.AddNewSourceFragment"
+        android:label="AddNewTypeFragment" >
         <action
-            android:id="@+id/action_addNewRecordFragment_to_pageViewerFragment"
+            android:id="@+id/action_addNewTypeFragment_to_pageViewerFragment"
             app:destination="@id/pageViewerFragment" />
     </fragment>
 </navigation>

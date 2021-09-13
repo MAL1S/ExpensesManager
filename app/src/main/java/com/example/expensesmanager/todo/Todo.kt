@@ -26,4 +26,8 @@ interface {
 
 find out what to do with income list -----(done)
 
+create card for sources and repair it all
+
+rework cards for the needs
+
  */

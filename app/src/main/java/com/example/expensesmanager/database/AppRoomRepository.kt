@@ -1,23 +1,43 @@
 package com.example.expensesmanager.database
 
 import androidx.lifecycle.LiveData
-import com.example.expensesmanager.models.Money
+import com.example.expensesmanager.models.Record
+import com.example.expensesmanager.models.Source
 
 class AppRoomRepository(private val appRoomDao: AppRoomDao) {
 
-    val allExpenses: LiveData<List<Money>>
-        get() = appRoomDao.getAllExpenses()
+    val allExpenseSources: LiveData<List<Source>>
+        get() = appRoomDao.getAllExpensesSources()
 
-    val allIncome: LiveData<List<Money>>
-        get() = appRoomDao.getAllIncome()
+    val allIncomeSources: LiveData<List<Source>>
+        get() = appRoomDao.getAllIncomeSources()
 
-    suspend fun insert(money: Money, onSuccess: () -> Unit) {
-        appRoomDao.insert(money)
+    val allSources: LiveData<List<Source>>
+        get() = appRoomDao.getAllItems()
+
+//    val allExpenseRecords: LiveData<List<Record>>
+//        get() = appRoomDao.getAllFromSource()
+//
+//    val allExpenseRecords: LiveData<List<Record>>
+//        get() = appRoomDao.getAllFromSource()
+
+    suspend fun insert(record: Record, onSuccess: () -> Unit) {
+        appRoomDao.insert(record)
         onSuccess()
     }
 
-    suspend fun delete(money: Money, onSuccess: () -> Unit) {
-        appRoomDao.delete(money)
+    suspend fun delete(record: Record, onSuccess: () -> Unit) {
+        appRoomDao.delete(record)
+        onSuccess()
+    }
+
+    suspend fun insertSource(source: Source, onSuccess: () -> Unit) {
+        appRoomDao.insert(source)
+        onSuccess()
+    }
+
+    suspend fun deleteSource(source: Source, onSuccess: () -> Unit) {
+        appRoomDao.delete(source)
         onSuccess()
     }
 }

@@ -8,7 +8,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.ActivityMainBinding
-import com.example.expensesmanager.models.Money
+import com.example.expensesmanager.models.Record
+import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.utils.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var navController: NavController
 
     private lateinit var mViewModel: MainViewModel
-    private lateinit var mObserverTotal: Observer<List<Money>>
+    private lateinit var mObserverTotal: Observer<List<Source>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +51,13 @@ class MainActivity : AppCompatActivity() {
             mBinding.totalIncome.text = mViewModel.totalIncome.toString()
         }
 
-        mViewModel.allExpenses.observe(this, mObserverTotal)
-        mViewModel.allIncome.observe(this, mObserverTotal)
+        //mViewModel.allExpenses.observe(this, mObserverTotal)
+        //mViewModel.allIncome.observe(this, mObserverTotal)
     }
 
     private fun initListeners() {
         mBinding.fab.setOnClickListener {
-            navController.navigate(R.id.action_pageViewerFragment_to_addNewRecordFragment)
+            navController.navigate(R.id.action_pageViewerFragment_to_addNewTypeFragment)
         }
     }
 
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         _binding = null
-        mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
+        //mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
         super.onDestroy()
     }
 }

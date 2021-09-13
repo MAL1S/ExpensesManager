@@ -9,10 +9,16 @@ import com.example.expensesmanager.utils.REPOSITORY
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    val allExpenses
-        get() = REPOSITORY.allExpenses
-    val allIncome
-        get() = REPOSITORY.allIncome
+//    val allExpenses
+//        get() = REPOSITORY.allExpenses
+//    val allIncome
+//        get() = REPOSITORY.allIncome
+
+    val expenseSources
+        get() = REPOSITORY.allExpenseSources
+
+    val incomeSources
+        get() = REPOSITORY.allIncomeSources
 
     val total: Int
         get() = AppPreference.getTotalMoney()
@@ -22,7 +28,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     val totalIncome: Int
         get() = AppPreference.getTotalIncomeMoney()
-
 
     private val mContext = application
 
