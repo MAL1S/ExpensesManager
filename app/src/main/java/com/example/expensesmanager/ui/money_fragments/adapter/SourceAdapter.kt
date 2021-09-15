@@ -17,10 +17,10 @@ import com.example.expensesmanager.utils.log
 class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
 
     class SourcesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val title: TextView = view.findViewById(R.id.title)
+        val title: TextView = view.findViewById(R.id.item_title)
         val filler: Guideline = view.findViewById(R.id.filling_guideline)
         val moneyAmount: TextView = view.findViewById(R.id.item_money_amount)
-        val percent: TextView = view.findViewById(R.id.item_percentage)
+        val percent: TextView = view.findViewById(R.id.item_description)
     }
 
     private var mSourcesList = emptyList<Source>()

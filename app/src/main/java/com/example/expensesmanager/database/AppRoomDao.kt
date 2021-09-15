@@ -10,17 +10,26 @@ import com.example.expensesmanager.utils.INCOME
 @Dao
 interface AppRoomDao {
 
-    @Query("SELECT * FROM source_table")
-    fun getAllItems(): LiveData<List<Source>>
+    @Query("SELECT * FROM Source")
+    fun getAllItems(): List<Source>
 
-    @Query("SELECT * FROM source_table WHERE category=:value")
+    @Query("SELECT * FROM record_table")
+    fun getAllRecords(): List<Record>
+
+    @Query("SELECT * FROM Source")
+    fun getById(): List<Source>
+
+    @Query("SELECT * FROM Source WHERE category=:value")
     fun getAllExpensesSources(value: String = EXPENSE): LiveData<List<Source>>
 
-    @Query("SELECT * FROM source_table WHERE category=:value")
+    @Query("SELECT * FROM Source WHERE category=:value")
     fun getAllIncomeSources(value: String = INCOME): LiveData<List<Source>>
 
-    @Query("SELECT record_table.* FROM record_table JOIN source_table ON record_table.id = source_table.id WHERE source_table.category=:category AND source_table.source=:source GROUP BY record_table.moneyAmount")
-    fun getAllFromSource(source: String, category: String): LiveData<List<Record>>
+    @Query("SELECT record_table.* FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.category=:category GROUP BY record_table.moneyAmount")
+    fun getAllFromSource(category: String): LiveData<List<Record>>
+
+    @Query("SELECT * FROM Source WHERE Source=:category AND Source=:source")
+    suspend fun getSourceId(category: String, source: String): List<Source>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(record: Record)

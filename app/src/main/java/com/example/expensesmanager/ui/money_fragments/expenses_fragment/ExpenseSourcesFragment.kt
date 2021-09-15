@@ -53,7 +53,7 @@ class ExpenseSourcesFragment : Fragment() {
 
         mObserverList = Observer {
             mAdapter.setList(it)
-            Log.d(LOG, "observed expense sources")
+            Log.d(LOG, "=$it")
         }
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -64,7 +64,7 @@ class ExpenseSourcesFragment : Fragment() {
         fun click(source: Source) {
             val bundle = Bundle()
             bundle.putSerializable("source", source)
-            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_expenseRecordsFragment)
+            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_expenseRecordsFragment, bundle)
         }
     }
 }

@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_page_viewer_source">
         <action
             android:id="@+id/action_pageViewerSourceFragment_to_addNewSourceFragment"
-            app:destination="@id/addNewSourceFragment" />
+            app:destination="@id/addNewSourceFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_pageViewerSourceFragment_to_incomeRecordsFragment"
             app:destination="@id/incomeRecordsFragment" />

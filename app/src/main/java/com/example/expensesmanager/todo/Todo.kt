@@ -26,8 +26,8 @@ interface {
 
 find out what to do with income list -----(done)
 
-create card for sources and repair it all
+create card for sources and repair it all -----(done)
 
-rework cards for the needs
+synchronize expenses and income money amount with the source cards
 
  */

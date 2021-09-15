@@ -20,7 +20,7 @@ import com.example.expensesmanager.utils.LOG
 
 class IncomeSourcesFragment : Fragment() {
 
-    private var _binding: FragmentExpenseRecordsBinding? = null
+    private var _binding: FragmentExpenseSourcesBinding? = null
     private val mBinding get() = _binding!!
 
     private lateinit var mAdapter: SourceAdapter
@@ -34,7 +34,7 @@ class IncomeSourcesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentExpenseRecordsBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentExpenseSourcesBinding.inflate(layoutInflater, container, false)
         return mBinding.root
     }
 

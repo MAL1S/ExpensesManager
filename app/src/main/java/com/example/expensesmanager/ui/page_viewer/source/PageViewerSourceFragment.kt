@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.expensesmanager.R
+import com.example.expensesmanager.databinding.ActivityMainBinding
 import com.example.expensesmanager.databinding.FragmentPageViewerSourceBinding
 import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.CURRENT_TAB
@@ -16,6 +18,7 @@ import com.google.android.material.tabs.TabLayout
 class PageViewerSourceFragment : Fragment() {
 
     private var _binding: FragmentPageViewerSourceBinding? = null
+    private var mainBinding: ActivityMainBinding? = null
     private val mBinding get() = _binding!!
 
     private lateinit var tabLayout: TabLayout
@@ -36,6 +39,7 @@ class PageViewerSourceFragment : Fragment() {
         super.onStart()
 
         initViewPager()
+        initListeners()
     }
 
     private fun initViewPager() {
@@ -69,6 +73,12 @@ class PageViewerSourceFragment : Fragment() {
                 tabLayout.selectTab(tabLayout.getTabAt(position))
             }
         })
+    }
+
+    private fun initListeners() {
+        mBinding.fab.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_addNewSourceFragment)
+        }
     }
 
     override fun onDestroy() {

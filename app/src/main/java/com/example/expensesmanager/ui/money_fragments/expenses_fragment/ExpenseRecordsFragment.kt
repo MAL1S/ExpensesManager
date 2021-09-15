@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentExpenseRecordsBinding
 import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.adapter.RecordAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.LOG
+import com.example.expensesmanager.utils.log
 import com.example.expensesmanager.utils.sortByPercent
 
 class ExpenseRecordsFragment : Fragment() {
@@ -45,11 +48,21 @@ class ExpenseRecordsFragment : Fragment() {
 
         mObserverList = Observer {
             mAdapter.setList(sortByPercent(it))
-            Log.d(LOG, "observed expenses")
+            log(it.toString()+"=")
         }
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        //mViewModel.allExpenses.observe(this, mObserverList)
+        mViewModel.expenseRecords.observe(APP_ACTIVITY, mObserverList)
+
+        mBinding.fab.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putSerializable("source", arguments?.getSerializable("source"))
+            log(arguments?.getSerializable("source").toString())
+            APP_ACTIVITY.navController.navigate(
+                R.id.action_expenseRecordsFragment_to_addNewRecordFragment,
+                bundle
+            )
+        }
     }
 
     override fun onDestroy() {

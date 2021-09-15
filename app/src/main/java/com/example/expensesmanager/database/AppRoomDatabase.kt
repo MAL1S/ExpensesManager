@@ -23,7 +23,9 @@ abstract class AppRoomDatabase: RoomDatabase() {
                     context,
                     AppRoomDatabase::class.java,
                     "database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 database as AppRoomDatabase
             } else database as AppRoomDatabase
         }

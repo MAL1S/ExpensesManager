@@ -1,8 +1,8 @@
 package com.example.expensesmanager.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -10,11 +10,9 @@ import androidx.navigation.findNavController
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.ActivityMainBinding
 import com.example.expensesmanager.models.Source
-import com.example.expensesmanager.utils.*
-
-import androidx.navigation.fragment.NavHostFragment
-
-
+import com.example.expensesmanager.utils.APP_ACTIVITY
+import com.example.expensesmanager.utils.AppPreference
+import com.example.expensesmanager.utils.log
 
 
 class MainActivity : AppCompatActivity() {
@@ -61,14 +59,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        mBinding.fab.setOnClickListener {
-            val navHostFragment: Fragment? =
-                supportFragmentManager.findFragmentById(R.id.nav_host_fragment)
-
-            log(R.layout.fragment_expense_sources.toString())
-            log(navController.currentDestination?.id.toString())
-            //if () navController.navigate(R.id.action_pageViewerSourceFragment_to_addNewSourceFragment)
-        }
     }
 
     override fun onResume() {

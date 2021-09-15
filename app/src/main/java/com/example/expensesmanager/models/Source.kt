@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "source_table")
+@Entity
 data class Source(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val source: String,

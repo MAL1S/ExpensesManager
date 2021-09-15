@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentAddNewRecordBinding
-import com.example.expensesmanager.utils.APP_ACTIVITY
-import com.example.expensesmanager.utils.showToast
+import com.example.expensesmanager.models.Record
+import com.example.expensesmanager.models.Source
+import com.example.expensesmanager.utils.*
 import java.util.*
 
 
@@ -38,57 +40,67 @@ class AddNewRecordFragment : Fragment() {
     }
 
     private fun initListeners() {
-        //для добавления записи,а не темы
-//        mBinding.buttonAddRecord.setOnClickListener {
-//            val type = if (CURRENT_TAB == 0) EXPENSE
-//            else INCOME
-//            val date = "today"
-//            //val title = mBinding.inputTitle.text.toString()
-//            //val money = mBinding.inputMoney.text.toString().toInt()
-//
-//            log(money.toString())
-//
-//            if (CURRENT_TAB == 0) {
-//                AppPreference.updateTotalMoney(-1 * money)
-//                AppPreference.updateTotalExpensesMoney(money)
-//            } else {
-//                AppPreference.updateTotalMoney(money)
-//                AppPreference.updateTotalIncomeMoney(money)
-//            }
-//
-//            showToast(AppPreference.getTotalExpensesMoney().toString())
-//
-//            mViewModel.insert(
-//                Money(
-//                    type = type,
-//                    title = title,
-//                    moneyAmount = money
-//                )
-//            ) {
-//                APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_pageViewerFragment)
-//            }
-//        }
+        mBinding.buttonAddRecord.setOnClickListener {
+            val src = arguments?.getSerializable("source") as Source
+
+            val type = src.category
+            val source = src.source
+            log("$type, $source")
+
+            val id = src.id
+            log("id = " + id.toString())
+
+            if (id == -1) {
+                showToast("error")
+            } else {
+                val title = mBinding.inputTitle.text.toString()
+                val money = mBinding.inputMoney.text.toString().toInt()
+                val desc = mBinding.inputDescription.text.toString()
+
+                log(money.toString())
+
+                if (type == EXPENSE) {
+                    AppPreference.updateTotalMoney(-1 * money)
+                    AppPreference.updateTotalExpensesMoney(money)
+                } else {
+                    AppPreference.updateTotalMoney(money)
+                    AppPreference.updateTotalIncomeMoney(money)
+                }
+
+                val record = Record(
+                    sourceId = id,
+                    type = type,
+                    title = title,
+                    moneyAmount = money,
+                    description = desc
+                )
+
+                log("record = " + record.toString())
+
+                mViewModel.insert(
+                    record
+                ) {
+                    APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_expenseRecordsFragment)
+                }
+            }
+        }
 
         mBinding.datePicker.setOnClickListener {
             val c = Calendar.getInstance()
-            val year = c.get(Calendar.YEAR)
+            val curYear = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
-            mBinding.datePicker.setOnClickListener {
-
-                val dpd = DatePickerDialog(
-                    APP_ACTIVITY,
-                    DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                        // Display Selected date in TextView
-                        showToast("$dayOfMonth $monthOfYear, $year")
-                    },
-                    year,
-                    month,
-                    day
-                )
-                dpd.show()
-            }
+            val dpd = DatePickerDialog(
+                APP_ACTIVITY,
+                { view, year, monthOfYear, dayOfMonth ->
+                    mBinding.pickedDate.text = "$dayOfMonth:$monthOfYear:$year"
+                },
+                curYear,
+                month,
+                day
+            )
+            dpd.show()
         }
     }
 

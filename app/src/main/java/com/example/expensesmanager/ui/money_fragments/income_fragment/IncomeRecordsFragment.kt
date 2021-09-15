@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentIncomeRecordsBinding
 import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.adapter.RecordAdapter
+import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.LOG
 import com.example.expensesmanager.utils.log
 import com.example.expensesmanager.utils.sortByPercent
@@ -55,6 +57,10 @@ class IncomeRecordsFragment : Fragment() {
 
 
         //mViewModel.allIncome.observe(this, mObserverList)
+
+        mBinding.fab.setOnClickListener {
+            APP_ACTIVITY.navController.navigate(R.id.action_incomeRecordsFragment_to_addNewRecordFragment)
+        }
     }
 
     override fun onDestroy() {
