@@ -57,4 +57,12 @@ class IncomeSourcesFragment : Fragment() {
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mViewModel.incomeSources.observe(this, mObserverList)
     }
+
+    companion object {
+        fun click(source: Source) {
+            val bundle = Bundle()
+            bundle.putSerializable("source", source)
+            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_incomeRecordsFragment)
+        }
+    }
 }

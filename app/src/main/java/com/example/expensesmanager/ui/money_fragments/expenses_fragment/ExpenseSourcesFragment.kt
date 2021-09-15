@@ -64,7 +64,7 @@ class ExpenseSourcesFragment : Fragment() {
         fun click(source: Source) {
             val bundle = Bundle()
             bundle.putSerializable("source", source)
-            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_pageViewerRecordFragment)
+            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_expenseRecordsFragment)
         }
     }
 }

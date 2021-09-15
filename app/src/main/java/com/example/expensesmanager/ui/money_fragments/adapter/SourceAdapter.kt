@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
 import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.ui.money_fragments.expenses_fragment.ExpenseSourcesFragment
+import com.example.expensesmanager.ui.money_fragments.income_fragment.IncomeSourcesFragment
 import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.EXPENSE
 import com.example.expensesmanager.utils.log
@@ -26,7 +27,9 @@ class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
 
     override fun onViewAttachedToWindow(holder: SourcesViewHolder) {
         holder.itemView.setOnClickListener {
-            ExpenseSourcesFragment.click(mSourcesList[holder.adapterPosition])
+            val src = mSourcesList[holder.adapterPosition]
+            if (src.category == EXPENSE) ExpenseSourcesFragment.click(src)
+            else IncomeSourcesFragment.click(src)
         }
     }
 

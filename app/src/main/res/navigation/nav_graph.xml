@@ -14,8 +14,11 @@
             android:id="@+id/action_pageViewerSourceFragment_to_addNewSourceFragment"
             app:destination="@id/addNewSourceFragment" />
         <action
-            android:id="@+id/action_pageViewerSourceFragment_to_pageViewerRecordFragment"
-            app:destination="@id/pageViewerRecordFragment" />
+            android:id="@+id/action_pageViewerSourceFragment_to_incomeRecordsFragment"
+            app:destination="@id/incomeRecordsFragment" />
+        <action
+            android:id="@+id/action_pageViewerSourceFragment_to_expenseRecordsFragment"
+            app:destination="@id/expenseRecordsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewRecordFragment"
@@ -23,8 +26,11 @@
         android:label="fragment_add_new_record"
         tools:layout="@layout/fragment_add_new_record" >
         <action
-            android:id="@+id/action_addNewRecordFragment_to_pageViewerRecordFragment"
-            app:destination="@id/pageViewerRecordFragment" />
+            android:id="@+id/action_addNewRecordFragment_to_incomeRecordsFragment"
+            app:destination="@id/incomeRecordsFragment" />
+        <action
+            android:id="@+id/action_addNewRecordFragment_to_expenseRecordsFragment"
+            app:destination="@id/expenseRecordsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewSourceFragment"
@@ -36,15 +42,27 @@
             app:destination="@id/pageViewerSourceFragment" />
     </fragment>
     <fragment
-        android:id="@+id/pageViewerRecordFragment"
-        android:name="com.example.expensesmanager.ui.page_viewer.record.PageViewerRecordFragment"
-        android:label="PageViewerRecordFragment"
-        tools:layout="@layout/fragment_page_viewer_record">
+        android:id="@+id/expenseRecordsFragment"
+        android:name="com.example.expensesmanager.ui.money_fragments.expenses_fragment.ExpenseRecordsFragment"
+        android:label="fragment_income_records"
+        tools:layout="@layout/fragment_income_records" >
         <action
-            android:id="@+id/action_pageViewerRecordFragment_to_addNewRecordFragment"
+            android:id="@+id/action_expenseRecordsFragment_to_addNewRecordFragment"
             app:destination="@id/addNewRecordFragment" />
         <action
-            android:id="@+id/action_pageViewerRecordFragment_to_pageViewerSourceFragment"
+            android:id="@+id/action_expenseRecordsFragment_to_pageViewerSourceFragment"
+            app:destination="@id/pageViewerSourceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/incomeRecordsFragment"
+        android:name="com.example.expensesmanager.ui.money_fragments.income_fragment.IncomeRecordsFragment"
+        android:label="IncomeRecordsFragment"
+        tools:layout="@layout/fragment_expense_records">
+        <action
+            android:id="@+id/action_incomeRecordsFragment_to_addNewRecordFragment"
+            app:destination="@id/addNewRecordFragment" />
+        <action
+            android:id="@+id/action_incomeRecordsFragment_to_pageViewerSourceFragment"
             app:destination="@id/pageViewerSourceFragment" />
     </fragment>
 </navigation>
