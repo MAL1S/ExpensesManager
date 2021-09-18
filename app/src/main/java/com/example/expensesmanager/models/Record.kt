@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "record_table")
 data class Record(
-    @PrimaryKey val sourceId: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo val sourceId: Int,
     @ColumnInfo var type: String,
     @ColumnInfo var title: String,
     @ColumnInfo var moneyAmount: Int,

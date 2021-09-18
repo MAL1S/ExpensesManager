@@ -2,23 +2,21 @@ package com.example.expensesmanager.ui.money_fragments.expenses_fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentExpenseSourcesBinding
-import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.ui.MainViewModel
-import com.example.expensesmanager.ui.money_fragments.adapter.RecordAdapter
 import com.example.expensesmanager.ui.money_fragments.adapter.SourceAdapter
 import com.example.expensesmanager.utils.APP_ACTIVITY
+import com.example.expensesmanager.utils.CURRENT_SOURCE
 import com.example.expensesmanager.utils.LOG
-import com.example.expensesmanager.utils.sortByPercent
 
 class ExpenseSourcesFragment : Fragment() {
 
@@ -62,9 +60,12 @@ class ExpenseSourcesFragment : Fragment() {
 
     companion object {
         fun click(source: Source) {
-            val bundle = Bundle()
-            bundle.putSerializable("source", source)
-            APP_ACTIVITY.navController.navigate(R.id.action_pageViewerSourceFragment_to_expenseRecordsFragment, bundle)
+//            val bundle = Bundle()
+//            bundle.putSerializable("source", source)
+            CURRENT_SOURCE = source
+            APP_ACTIVITY.navController.navigate(
+                R.id.action_pageViewerSourceFragment_to_expenseRecordsFragment
+            )
         }
     }
 }

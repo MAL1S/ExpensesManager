@@ -41,7 +41,7 @@ class AddNewRecordFragment : Fragment() {
 
     private fun initListeners() {
         mBinding.buttonAddRecord.setOnClickListener {
-            val src = arguments?.getSerializable("source") as Source
+            val src = CURRENT_SOURCE
 
             val type = src.category
             val source = src.source

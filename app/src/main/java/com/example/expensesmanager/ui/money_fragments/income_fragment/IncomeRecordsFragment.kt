@@ -42,24 +42,24 @@ class IncomeRecordsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-
         mRecyclerView = mBinding.recyclerView
         mAdapter = RecordAdapter()
         mRecyclerView.adapter = mAdapter
 
         mObserverList = Observer {
-            val list = sortByPercent(it)
-            mAdapter.setList(list)
-            log(list.toString())
-            Log.d(LOG, "observed income")
+            mAdapter.setList(it.reversed())
         }
 
-
-        //mViewModel.allIncome.observe(this, mObserverList)
+        mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mViewModel.incomeRecords.observe(APP_ACTIVITY, mObserverList)
 
         mBinding.fab.setOnClickListener {
-            APP_ACTIVITY.navController.navigate(R.id.action_incomeRecordsFragment_to_addNewRecordFragment)
+            //val bundle = Bundle()
+            //bundle.putSerializable("source", arguments?.getSerializable("source"))
+            //log(arguments?.getSerializable("source").toString())
+            APP_ACTIVITY.navController.navigate(
+                R.id.action_incomeRecordsFragment_to_addNewRecordFragment
+            )
         }
     }
 

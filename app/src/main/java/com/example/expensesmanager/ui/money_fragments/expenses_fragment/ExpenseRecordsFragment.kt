@@ -47,20 +47,18 @@ class ExpenseRecordsFragment : Fragment() {
         mRecyclerView.adapter = mAdapter
 
         mObserverList = Observer {
-            mAdapter.setList(sortByPercent(it))
-            log(it.toString()+"=")
+            mAdapter.setList(it.reversed())
         }
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mViewModel.expenseRecords.observe(APP_ACTIVITY, mObserverList)
 
         mBinding.fab.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putSerializable("source", arguments?.getSerializable("source"))
-            log(arguments?.getSerializable("source").toString())
+            //val bundle = Bundle()
+            //bundle.putSerializable("source", arguments?.getSerializable("source"))
+            //log(arguments?.getSerializable("source").toString())
             APP_ACTIVITY.navController.navigate(
-                R.id.action_expenseRecordsFragment_to_addNewRecordFragment,
-                bundle
+                R.id.action_expenseRecordsFragment_to_addNewRecordFragment
             )
         }
     }

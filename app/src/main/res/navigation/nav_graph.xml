@@ -29,10 +29,12 @@
         tools:layout="@layout/fragment_add_new_record" >
         <action
             android:id="@+id/action_addNewRecordFragment_to_incomeRecordsFragment"
-            app:destination="@id/incomeRecordsFragment" />
+            app:destination="@id/incomeRecordsFragment"
+            app:popUpTo="@id/incomeRecordsFragment" />
         <action
             android:id="@+id/action_addNewRecordFragment_to_expenseRecordsFragment"
-            app:destination="@id/expenseRecordsFragment" />
+            app:destination="@id/expenseRecordsFragment"
+            app:popUpTo="@id/expenseRecordsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewSourceFragment"
@@ -41,7 +43,8 @@
         tools:layout="@layout/fragment_add_new_source">
         <action
             android:id="@+id/action_addNewSourceFragment_to_pageViewerSourceFragment"
-            app:destination="@id/pageViewerSourceFragment" />
+            app:destination="@id/pageViewerSourceFragment"
+            app:popUpTo="@id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/expenseRecordsFragment"

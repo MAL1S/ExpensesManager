@@ -25,8 +25,8 @@ interface AppRoomDao {
     @Query("SELECT * FROM Source WHERE category=:value")
     fun getAllIncomeSources(value: String = INCOME): LiveData<List<Source>>
 
-    @Query("SELECT record_table.* FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.category=:category GROUP BY record_table.moneyAmount")
-    fun getAllFromSource(category: String): LiveData<List<Record>>
+    @Query("SELECT record_table.* FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.id = :id GROUP BY record_table.moneyAmount")
+    fun getAllFromSource(id: Int): LiveData<List<Record>>
 
     @Query("SELECT * FROM Source WHERE Source=:category AND Source=:source")
     suspend fun getSourceId(category: String, source: String): List<Source>

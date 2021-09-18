@@ -19,7 +19,7 @@ class RecordAdapter : RecyclerView.Adapter<RecordAdapter.RecordsViewHolder>() {
     private var recordList = emptyList<Record>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.source_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.record_item, parent, false)
         return RecordsViewHolder(view)
     }
 

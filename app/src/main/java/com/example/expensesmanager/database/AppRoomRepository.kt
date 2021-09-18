@@ -3,8 +3,7 @@ package com.example.expensesmanager.database
 import androidx.lifecycle.LiveData
 import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.models.Source
-import com.example.expensesmanager.utils.EXPENSE
-import com.example.expensesmanager.utils.INCOME
+import com.example.expensesmanager.utils.CURRENT_SOURCE
 
 class AppRoomRepository(private val appRoomDao: AppRoomDao) {
 
@@ -21,10 +20,10 @@ class AppRoomRepository(private val appRoomDao: AppRoomDao) {
         get() = appRoomDao.getAllRecords()
 
     val allExpenseRecords: LiveData<List<Record>>
-        get() = appRoomDao.getAllFromSource(EXPENSE)
+        get() = appRoomDao.getAllFromSource(CURRENT_SOURCE.id)
 
     val allIncomeRecords: LiveData<List<Record>>
-        get() = appRoomDao.getAllFromSource(INCOME)
+        get() = appRoomDao.getAllFromSource(CURRENT_SOURCE.id)
 
     suspend fun getAllSources(): List<Source> {
         return appRoomDao.getAllItems()
