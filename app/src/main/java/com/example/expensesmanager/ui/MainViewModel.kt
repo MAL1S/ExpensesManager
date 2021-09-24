@@ -2,10 +2,12 @@ package com.example.expensesmanager.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.expensesmanager.database.AppRoomDatabase
 import com.example.expensesmanager.database.AppRoomRepository
 import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.REPOSITORY
+import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 

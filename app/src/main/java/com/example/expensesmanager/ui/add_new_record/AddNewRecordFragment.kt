@@ -80,6 +80,7 @@ class AddNewRecordFragment : Fragment() {
                 mViewModel.insert(
                     record
                 ) {
+                    mViewModel.updateMoney(id)
                     APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_expenseRecordsFragment)
                 }
             }

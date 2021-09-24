@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
             mBinding.totalIncome.text = mViewModel.totalIncome.toString()
         }
 
-        //mViewModel.allExpenses.observe(this, mObserverTotal)
-        //mViewModel.allIncome.observe(this, mObserverTotal)
+        mViewModel.expenseSources.observe(this, mObserverTotal)
+        mViewModel.incomeSources.observe(this, mObserverTotal)
     }
 
     private fun initListeners() {
@@ -64,12 +64,20 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        log("resumed")
+        mViewModel.expenseSources.observe(this, mObserverTotal)
+        mViewModel.incomeSources.observe(this, mObserverTotal)
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        mViewModel.expenseSources.removeObservers(APP_ACTIVITY)
+        mViewModel.incomeSources.removeObservers(APP_ACTIVITY)
     }
 
     override fun onDestroy() {
         _binding = null
-        //mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
+
         super.onDestroy()
     }
 }

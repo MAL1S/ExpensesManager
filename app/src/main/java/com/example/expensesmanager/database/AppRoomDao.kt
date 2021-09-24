@@ -19,6 +19,21 @@ interface AppRoomDao {
     @Query("SELECT * FROM Source")
     fun getById(): List<Source>
 
+    @Query("UPDATE source SET totalMoneyAmount=:total WHERE id=:id")
+    fun updateTotalSourceMoney(total: Int, id: Int)
+
+    @Query("SELECT SUM(moneyAmount) FROM record_table WHERE sourceId=:id")
+    fun getTotalSourceMoney(id: Int): Int
+
+    @Query("SELECT SUM(moneyAmount) FROM record_table")
+    fun getTotalMoney(): Int
+
+    @Query("SELECT SUM(moneyAmount) FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.category=:cat")
+    fun getTotalExpenseMoney(cat: String = EXPENSE): Int
+
+    @Query("SELECT SUM(moneyAmount) FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.category=:cat")
+    fun getTotalIncomeMoney(cat: String = INCOME): Int
+
     @Query("SELECT * FROM Source WHERE category=:value")
     fun getAllExpensesSources(value: String = EXPENSE): LiveData<List<Source>>
 

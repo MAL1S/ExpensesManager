@@ -52,4 +52,24 @@ class AppRoomRepository(private val appRoomDao: AppRoomDao) {
         appRoomDao.delete(source)
         onSuccess()
     }
+
+    suspend fun updateTotalSourceMoney(total: Int, id: Int) {
+        appRoomDao.updateTotalSourceMoney(total, id)
+    }
+
+    suspend fun getTotalSourceMoney(sourceId: Int): Int {
+        return appRoomDao.getTotalSourceMoney(sourceId)
+    }
+
+    suspend fun getTotalMoney(): Int {
+        return appRoomDao.getTotalMoney()
+    }
+
+    suspend fun getExpenseMoney(): Int {
+        return appRoomDao.getTotalExpenseMoney()
+    }
+
+    suspend fun getIncomeMoney(): Int {
+        return appRoomDao.getTotalIncomeMoney()
+    }
 }
