@@ -30,11 +30,11 @@
         <action
             android:id="@+id/action_addNewRecordFragment_to_incomeRecordsFragment"
             app:destination="@id/incomeRecordsFragment"
-            app:popUpTo="@id/incomeRecordsFragment" />
+            app:popUpTo="@id/pageViewerSourceFragment" />
         <action
             android:id="@+id/action_addNewRecordFragment_to_expenseRecordsFragment"
             app:destination="@id/expenseRecordsFragment"
-            app:popUpTo="@id/expenseRecordsFragment" />
+            app:popUpTo="@id/pageViewerSourceFragment" />
     </fragment>
     <fragment
         android:id="@+id/addNewSourceFragment"

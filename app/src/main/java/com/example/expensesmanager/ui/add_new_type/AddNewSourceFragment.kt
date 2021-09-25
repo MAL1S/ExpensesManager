@@ -53,4 +53,9 @@ class AddNewSourceFragment : Fragment() {
             }
         }
     }
+
+    override fun onDestroy() {
+
+        super.onDestroy()
+    }
 }

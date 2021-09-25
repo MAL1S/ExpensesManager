@@ -45,10 +45,8 @@ class AddNewRecordFragment : Fragment() {
 
             val type = src.category
             val source = src.source
-            log("$type, $source")
 
             val id = src.id
-            log("id = " + id.toString())
 
             if (id == -1) {
                 showToast("error")
@@ -56,8 +54,6 @@ class AddNewRecordFragment : Fragment() {
                 val title = mBinding.inputTitle.text.toString()
                 val money = mBinding.inputMoney.text.toString().toInt()
                 val desc = mBinding.inputDescription.text.toString()
-
-                log(money.toString())
 
                 if (type == EXPENSE) {
                     AppPreference.updateTotalMoney(-1 * money)
@@ -67,21 +63,18 @@ class AddNewRecordFragment : Fragment() {
                     AppPreference.updateTotalIncomeMoney(money)
                 }
 
-                val record = Record(
-                    sourceId = id,
-                    type = type,
-                    title = title,
-                    moneyAmount = money,
-                    description = desc
-                )
-
-                log("record = " + record.toString())
-
                 mViewModel.insert(
-                    record
+                    Record(
+                        sourceId = id,
+                        type = type,
+                        title = title,
+                        moneyAmount = money,
+                        description = desc
+                    )
                 ) {
-                    mViewModel.updateMoney(id)
-                    APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_expenseRecordsFragment)
+                    mViewModel.updateMoney(id, money, type)
+                    if (type == EXPENSE) APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_expenseRecordsFragment)
+                    else if (type == INCOME) APP_ACTIVITY.navController.navigate(R.id.action_addNewRecordFragment_to_incomeRecordsFragment)
                 }
             }
         }

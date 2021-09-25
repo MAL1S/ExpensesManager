@@ -52,13 +52,13 @@ class PageViewerSourceFragment : Fragment() {
             pager.adapter = adapter
             tabLayout.addTab(tabLayout.newTab().setText("Expenses"))
             tabLayout.addTab(tabLayout.newTab().setText("Income"))
+            pager.isSaveEnabled = false
         }
 
         tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 pager.currentItem = tab?.position!!
                 CURRENT_TAB =  tab.position
-                log(CURRENT_TAB.toString())
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -81,8 +81,9 @@ class PageViewerSourceFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         _binding = null
-        super.onDestroy()
+        pager.adapter = null
+        super.onDestroyView()
     }
 }

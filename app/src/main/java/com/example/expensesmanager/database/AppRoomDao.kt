@@ -10,16 +10,16 @@ import com.example.expensesmanager.utils.INCOME
 @Dao
 interface AppRoomDao {
 
-    @Query("SELECT * FROM Source")
+    @Query("SELECT * FROM source_table")
     fun getAllItems(): List<Source>
 
     @Query("SELECT * FROM record_table")
     fun getAllRecords(): List<Record>
 
-    @Query("SELECT * FROM Source")
+    @Query("SELECT * FROM source_table")
     fun getById(): List<Source>
 
-    @Query("UPDATE source SET totalMoneyAmount=:total WHERE id=:id")
+    @Query("UPDATE source_table SET totalMoneyAmount=:total WHERE id=:id")
     fun updateTotalSourceMoney(total: Int, id: Int)
 
     @Query("SELECT SUM(moneyAmount) FROM record_table WHERE sourceId=:id")
@@ -28,22 +28,22 @@ interface AppRoomDao {
     @Query("SELECT SUM(moneyAmount) FROM record_table")
     fun getTotalMoney(): Int
 
-    @Query("SELECT SUM(moneyAmount) FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.category=:cat")
+    @Query("SELECT SUM(moneyAmount) FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.category=:cat")
     fun getTotalExpenseMoney(cat: String = EXPENSE): Int
 
-    @Query("SELECT SUM(moneyAmount) FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.category=:cat")
+    @Query("SELECT SUM(moneyAmount) FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.category=:cat")
     fun getTotalIncomeMoney(cat: String = INCOME): Int
 
-    @Query("SELECT * FROM Source WHERE category=:value")
+    @Query("SELECT * FROM source_table WHERE category=:value")
     fun getAllExpensesSources(value: String = EXPENSE): LiveData<List<Source>>
 
-    @Query("SELECT * FROM Source WHERE category=:value")
+    @Query("SELECT * FROM source_table WHERE category=:value")
     fun getAllIncomeSources(value: String = INCOME): LiveData<List<Source>>
 
-    @Query("SELECT record_table.* FROM record_table JOIN Source ON record_table.sourceId = Source.id WHERE Source.id = :id GROUP BY record_table.moneyAmount")
+    @Query("SELECT record_table.* FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.id = :id")
     fun getAllFromSource(id: Int): LiveData<List<Record>>
 
-    @Query("SELECT * FROM Source WHERE Source=:category AND Source=:source")
+    @Query("SELECT * FROM source_table WHERE Source=:category AND Source=:source")
     suspend fun getSourceId(category: String, source: String): List<Source>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

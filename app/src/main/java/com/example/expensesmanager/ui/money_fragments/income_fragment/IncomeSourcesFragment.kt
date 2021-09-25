@@ -14,9 +14,7 @@ import com.example.expensesmanager.databinding.FragmentExpenseSourcesBinding
 import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.adapter.SourceAdapter
-import com.example.expensesmanager.utils.APP_ACTIVITY
-import com.example.expensesmanager.utils.CURRENT_SOURCE
-import com.example.expensesmanager.utils.LOG
+import com.example.expensesmanager.utils.*
 
 class IncomeSourcesFragment : Fragment() {
 
@@ -50,18 +48,22 @@ class IncomeSourcesFragment : Fragment() {
         mRecyclerView.adapter = mAdapter
 
         mObserverList = Observer {
+            log("income source $it")
             mAdapter.setList(it)
-            Log.d(LOG, "observed expense sources")
         }
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mViewModel.incomeSources.observe(this, mObserverList)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        mViewModel.incomeSources.removeObserver(mObserverList)
+    }
+
     companion object {
         fun click(source: Source) {
-//            val bundle = Bundle()
-//            bundle.putSerializable("source", source)
             CURRENT_SOURCE = source
             APP_ACTIVITY.navController.navigate(
                 R.id.action_pageViewerSourceFragment_to_incomeRecordsFragment

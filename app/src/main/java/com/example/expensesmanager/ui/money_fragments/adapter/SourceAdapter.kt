@@ -50,13 +50,13 @@ class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
             holder.percent.text =
                 (100f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalExpensesMoney()).toInt()
                     .toString()
-            log(AppPreference.getTotalExpensesMoney().toString())
+            //log(AppPreference.getTotalExpensesMoney().toString())
         } else {
             holder.filler.setGuidelinePercent(1f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalIncomeMoney())
             holder.percent.text =
                 (100f * mSourcesList[position].totalMoneyAmount / AppPreference.getTotalIncomeMoney()).toInt()
                     .toString()
-            log(AppPreference.getTotalIncomeMoney().toString())
+            //log(AppPreference.getTotalIncomeMoney().toString())
         }
         holder.moneyAmount.text = mSourcesList[position].totalMoneyAmount.toString()
     }

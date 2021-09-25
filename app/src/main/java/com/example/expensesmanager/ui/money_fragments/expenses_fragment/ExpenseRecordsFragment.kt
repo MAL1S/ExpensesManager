@@ -14,10 +14,7 @@ import com.example.expensesmanager.databinding.FragmentExpenseRecordsBinding
 import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.ui.MainViewModel
 import com.example.expensesmanager.ui.money_fragments.adapter.RecordAdapter
-import com.example.expensesmanager.utils.APP_ACTIVITY
-import com.example.expensesmanager.utils.LOG
-import com.example.expensesmanager.utils.log
-import com.example.expensesmanager.utils.sortByPercent
+import com.example.expensesmanager.utils.*
 
 class ExpenseRecordsFragment : Fragment() {
 
@@ -47,25 +44,23 @@ class ExpenseRecordsFragment : Fragment() {
         mRecyclerView.adapter = mAdapter
 
         mObserverList = Observer {
+            log("FROM EXPENSE $it")
             mAdapter.setList(it.reversed())
         }
 
         mViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        mViewModel.expenseRecords.observe(APP_ACTIVITY, mObserverList)
+        mViewModel.expenseRecords.observe(viewLifecycleOwner, mObserverList)
 
         mBinding.fab.setOnClickListener {
-            //val bundle = Bundle()
-            //bundle.putSerializable("source", arguments?.getSerializable("source"))
-            //log(arguments?.getSerializable("source").toString())
             APP_ACTIVITY.navController.navigate(
                 R.id.action_expenseRecordsFragment_to_addNewRecordFragment
             )
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
-        //mViewModel.allExpenses.removeObservers(APP_ACTIVITY)
-        super.onDestroy()
+        mViewModel.expenseRecords.removeObserver(mObserverList)
     }
 }
