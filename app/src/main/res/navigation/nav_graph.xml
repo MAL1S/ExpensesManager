@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_expenseRecordsFragment_to_pageViewerSourceFragment"
             app:destination="@id/pageViewerSourceFragment" />
+        <action
+            android:id="@+id/action_expenseRecordsFragment_to_recordFragment"
+            app:destination="@id/recordFragment" />
     </fragment>
     <fragment
         android:id="@+id/incomeRecordsFragment"
@@ -69,5 +72,20 @@
         <action
             android:id="@+id/action_incomeRecordsFragment_to_pageViewerSourceFragment"
             app:destination="@id/pageViewerSourceFragment" />
+        <action
+            android:id="@+id/action_incomeRecordsFragment_to_recordFragment"
+            app:destination="@id/recordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordFragment"
+        android:name="com.example.expensesmanager.ui.record.RecordFragment"
+        android:label="fragment_record"
+        tools:layout="@layout/fragment_record" >
+        <action
+            android:id="@+id/action_recordFragment_to_expenseRecordsFragment"
+            app:destination="@id/expenseRecordsFragment" />
+        <action
+            android:id="@+id/action_recordFragment_to_incomeRecordsFragment"
+            app:destination="@id/incomeRecordsFragment" />
     </fragment>
 </navigation>

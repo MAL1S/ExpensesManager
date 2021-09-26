@@ -64,4 +64,13 @@ class IncomeRecordsFragment : Fragment() {
         mViewModel.incomeRecords.removeObserver(mObserverList)
         showToast("destroyed")
     }
+
+    companion object {
+        fun click(record: Record) {
+            CURRENT_RECORD = record
+            APP_ACTIVITY.navController.navigate(
+                R.id.action_incomeRecordsFragment_to_recordFragment
+            )
+        }
+    }
 }

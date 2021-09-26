@@ -63,4 +63,13 @@ class ExpenseRecordsFragment : Fragment() {
         _binding = null
         mViewModel.expenseRecords.removeObserver(mObserverList)
     }
+
+    companion object {
+        fun click(record: Record) {
+            CURRENT_RECORD = record
+            APP_ACTIVITY.navController.navigate(
+                R.id.action_expenseRecordsFragment_to_recordFragment
+            )
+        }
+    }
 }

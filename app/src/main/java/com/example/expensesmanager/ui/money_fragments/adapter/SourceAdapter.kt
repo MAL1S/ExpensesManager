@@ -12,6 +12,7 @@ import com.example.expensesmanager.ui.money_fragments.expenses_fragment.ExpenseS
 import com.example.expensesmanager.ui.money_fragments.income_fragment.IncomeSourcesFragment
 import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.EXPENSE
+import com.example.expensesmanager.utils.INCOME
 import com.example.expensesmanager.utils.log
 
 class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
@@ -29,7 +30,7 @@ class SourceAdapter : RecyclerView.Adapter<SourceAdapter.SourcesViewHolder>() {
         holder.itemView.setOnClickListener {
             val src = mSourcesList[holder.adapterPosition]
             if (src.category == EXPENSE) ExpenseSourcesFragment.click(src)
-            else IncomeSourcesFragment.click(src)
+            else if (src.category == INCOME) IncomeSourcesFragment.click(src)
         }
     }
 

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ExpensesManager/app/src/main/res/drawable-v24/bottom_panel_background.xml" value="0.3880208333333333" />
+        <entry key="..\:/ExpensesManager/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3880208333333333" />
         <entry key="..\:/ExpensesManager/app/src/main/res/drawable/fill_background.xml" value="0.3880208333333333" />
         <entry key="..\:/ExpensesManager/app/src/main/res/drawable/ic_add.xml" value="0.3880208333333333" />
         <entry key="..\:/ExpensesManager/app/src/main/res/drawable/title_bottom_border.xml" value="0.3880208333333333" />
@@ -19,10 +20,11 @@
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/fragment_page_viewer.xml" value="0.37206878582595104" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/fragment_page_viewer_record.xml" value="0.38385416666666666" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/fragment_page_viewer_source.xml" value="0.23777173913043478" />
+        <entry key="..\:/ExpensesManager/app/src/main/res/layout/fragment_record.xml" value="0.371875" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/fragment_view_pager.xml" value="0.371875" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/left_menu_textview.xml" value="0.28958333333333336" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/list_item.xml" value="0.371875" />
-        <entry key="..\:/ExpensesManager/app/src/main/res/layout/record_item.xml" value="0.371875" />
+        <entry key="..\:/ExpensesManager/app/src/main/res/layout/record_item.xml" value="0.75" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/source_item.xml" value="0.371875" />
         <entry key="..\:/ExpensesManager/app/src/main/res/layout/view_pager_main.xml" value="0.371875" />
         <entry key="..\:/ExpensesManager/app/src/main/res/menu/drawer_menu.xml" value="0.21666666666666667" />

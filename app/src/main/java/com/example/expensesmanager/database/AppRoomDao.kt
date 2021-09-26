@@ -34,10 +34,10 @@ interface AppRoomDao {
     @Query("SELECT SUM(moneyAmount) FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.category=:cat")
     fun getTotalIncomeMoney(cat: String = INCOME): Int
 
-    @Query("SELECT * FROM source_table WHERE category=:value")
+    @Query("SELECT * FROM source_table WHERE category=:value GROUP BY totalMoneyAmount")
     fun getAllExpensesSources(value: String = EXPENSE): LiveData<List<Source>>
 
-    @Query("SELECT * FROM source_table WHERE category=:value")
+    @Query("SELECT * FROM source_table WHERE category=:value GROUP BY totalMoneyAmount")
     fun getAllIncomeSources(value: String = INCOME): LiveData<List<Source>>
 
     @Query("SELECT record_table.* FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.id = :id")
