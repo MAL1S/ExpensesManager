@@ -1,8 +1,13 @@
 package com.example.expensesmanager.ui
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -25,13 +30,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mViewModel: MainViewModel
     private lateinit var mObserverTotal: Observer<List<Source>>
 
+    private lateinit var mToolbar: Toolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
+        mToolbar = mBinding.toolbar
+        setSupportActionBar(mToolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
         init()
-        initListeners()
     }
 
     private fun init() {
@@ -56,9 +66,9 @@ class MainActivity : AppCompatActivity() {
 
         mViewModel.expenseSources.observe(this, mObserverTotal)
         mViewModel.incomeSources.observe(this, mObserverTotal)
-    }
 
-    private fun initListeners() {
+        val tv = mToolbar.findViewById<TextView>(R.id.tv_calendar)
+        tv.text = "123"
     }
 
     override fun onResume() {

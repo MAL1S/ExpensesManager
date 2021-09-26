@@ -14,15 +14,41 @@
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white">
+
+        <View
+            android:id="@+id/btn_calendar_left"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_left" />
+
+        <TextView
+            android:id="@+id/tv_calendar"
+            style="@style/current_amount_of_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            tools:text="September 2021" />
+
+        <View
+            android:id="@+id/btn_calendar_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_right" />
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/textView2"
         style="@style/total_money_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/total"
         android:layout_marginRight="@dimen/margin_side"
+        android:text="@string/total"
         app:layout_constraintEnd_toStartOf="@+id/total"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
