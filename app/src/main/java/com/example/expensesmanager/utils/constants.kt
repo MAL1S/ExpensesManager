@@ -13,3 +13,17 @@ lateinit var REPOSITORY: AppRoomRepository
 var CURRENT_TAB: Int = 0
 lateinit var CURRENT_SOURCE: Source
 lateinit var CURRENT_RECORD: Record
+val months = listOf<String>(
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+)

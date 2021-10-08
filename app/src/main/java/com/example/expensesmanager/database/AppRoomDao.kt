@@ -12,7 +12,7 @@ import com.example.expensesmanager.utils.INCOME
 interface AppRoomDao {
 
     @Query("SELECT * FROM source_table")
-    fun getAllItems(): List<Source>
+    fun getAllItems(): LiveData<List<Source>>
 
     @Query("SELECT * FROM record_table")
     fun getAllRecords(): List<Record>
@@ -35,10 +35,10 @@ interface AppRoomDao {
     @Query("SELECT SUM(moneyAmount) FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.category=:cat")
     fun getTotalIncomeMoney(cat: String = INCOME): Int
 
-    @Query("SELECT * FROM source_table WHERE category=:value AND year = :year AND month = :month GROUP BY totalMoneyAmount")
+    @Query("SELECT * FROM source_table WHERE category=:value AND year = :year AND month = :month")
     fun getAllExpensesSources(month: Int = AppPreference.getCurrentMonth(), year: Int = AppPreference.getCurrentYear(), value: String = EXPENSE): LiveData<List<Source>>
 
-    @Query("SELECT * FROM source_table WHERE category=:value AND year = :year AND month = :month  GROUP BY totalMoneyAmount")
+    @Query("SELECT * FROM source_table WHERE category=:value AND year = :year AND month = :month")
     fun getAllIncomeSources(month: Int = AppPreference.getCurrentMonth(), year: Int = AppPreference.getCurrentYear(), value: String = INCOME): LiveData<List<Source>>
 
     @Query("SELECT record_table.* FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.id = :id")

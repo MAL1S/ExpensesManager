@@ -19,6 +19,7 @@ import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.utils.APP_ACTIVITY
 import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.log
+import com.example.expensesmanager.utils.months
 
 
 class MainActivity : AppCompatActivity() {
@@ -68,6 +69,11 @@ class MainActivity : AppCompatActivity() {
         mViewModel.expenseSources.observe(this, mObserverTotal)
         mViewModel.incomeSources.observe(this, mObserverTotal)
 
+//        var observerTotal: Observer<List<Source>> = Observer {
+//            log("$it")
+//        }
+//        mViewModel.allSources.observe(this, observerTotal)
+
         initToolbar()
     }
 
@@ -75,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         val tv = mToolbar.findViewById<TextView>(R.id.tv_calendar)
 
         val updateText: () -> Unit = {
-            tv.text = "${AppPreference.getCurrentMonth()} ${AppPreference.getCurrentYear()}"
+            tv.text = "${months[AppPreference.getCurrentMonth()]} ${AppPreference.getCurrentYear()}"
         }
 
         updateText()

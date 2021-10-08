@@ -25,9 +25,9 @@ class AppRoomRepository(private val appRoomDao: AppRoomDao) {
     val allIncomeRecords: LiveData<List<Record>>
         get() = appRoomDao.getAllFromSource(CURRENT_SOURCE.id)
 
-    suspend fun getAllSources(): List<Source> {
-        return appRoomDao.getAllItems()
-    }
+    val getAllSources: LiveData<List<Source>>
+        get() = appRoomDao.getAllItems()
+
 
     suspend fun getSourceId(category: String, source: String): List<Source> {
         return appRoomDao.getSourceId(category, source)

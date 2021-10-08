@@ -17,7 +17,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 //        get() = REPOSITORY.allIncome
 
     val allSources
-        get() = REPOSITORY.allSources
+        get() = REPOSITORY.getAllSources
 
     val expenseRecords
         get() = REPOSITORY.allExpenseRecords
