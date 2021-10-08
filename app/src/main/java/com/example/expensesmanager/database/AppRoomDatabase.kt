@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.models.Source
 
-@Database(entities = [Source::class, Record::class], version = 2)
+@Database(entities = [Source::class, Record::class], version = 1)
 abstract class AppRoomDatabase: RoomDatabase() {
     abstract fun getAppRoomDao(): AppRoomDao
 

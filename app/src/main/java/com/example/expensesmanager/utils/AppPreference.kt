@@ -2,6 +2,7 @@ package com.example.expensesmanager.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.util.*
 
 object AppPreference {
 
@@ -9,6 +10,8 @@ object AppPreference {
     private const val TOTAL_EXPENSES = "total_expenses"
     private const val TOTAL_INCOME = "total_income"
     private const val NAME_PREF = "preference"
+    private const val CURRENT_YEAR = "current_year"
+    private const val CURRENT_MONTH = "current_month"
 
     private lateinit var mPreferences: SharedPreferences
 
@@ -38,6 +41,50 @@ object AppPreference {
     fun updateTotalIncomeMoney(value: Int) {
         mPreferences.edit()
             .putInt(TOTAL_INCOME, mPreferences.getInt(TOTAL_INCOME, 0) + value)
+            .apply()
+    }
+
+    fun getCurrentYear(): Int = mPreferences.getInt(CURRENT_YEAR, Calendar.getInstance().get(Calendar.YEAR))
+
+    private fun incCurrentYear() {
+        val curYear = getCurrentYear() + 1
+
+        mPreferences.edit()
+            .putInt(CURRENT_YEAR, curYear)
+            .apply()
+    }
+
+    private fun decCurrentYear() {
+        val curYear = getCurrentYear() - 1
+
+        mPreferences.edit()
+            .putInt(CURRENT_YEAR, curYear)
+            .apply()
+    }
+
+    fun getCurrentMonth(): Int = mPreferences.getInt(CURRENT_MONTH, Calendar.getInstance().get(Calendar.MONTH))
+
+    fun incCurrentMonth() {
+        var curMonth = mPreferences.getInt(CURRENT_MONTH, Calendar.getInstance().get(Calendar.MONTH)) + 1
+        if (curMonth == 12) {
+            curMonth = 0
+            incCurrentYear()
+        }
+
+        mPreferences.edit()
+            .putInt(CURRENT_MONTH, curMonth)
+            .apply()
+    }
+
+    fun decCurrentMonth() {
+        var curMonth = mPreferences.getInt(CURRENT_MONTH, Calendar.getInstance().get(Calendar.MONTH)) - 1
+        if (curMonth == -1) {
+            curMonth = 11
+            decCurrentYear()
+        }
+
+        mPreferences.edit()
+            .putInt(CURRENT_MONTH, curMonth)
             .apply()
     }
 }

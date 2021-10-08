@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -67,8 +68,26 @@ class MainActivity : AppCompatActivity() {
         mViewModel.expenseSources.observe(this, mObserverTotal)
         mViewModel.incomeSources.observe(this, mObserverTotal)
 
+        initToolbar()
+    }
+
+    private fun initToolbar() {
         val tv = mToolbar.findViewById<TextView>(R.id.tv_calendar)
-        tv.text = "123"
+
+        val updateText: () -> Unit = {
+            tv.text = "${AppPreference.getCurrentMonth()} ${AppPreference.getCurrentYear()}"
+        }
+
+        updateText()
+
+        mToolbar.findViewById<Button>(R.id.btn_calendar_left).setOnClickListener {
+            AppPreference.decCurrentMonth()
+            updateText()
+        }
+        mToolbar.findViewById<Button>(R.id.btn_calendar_right).setOnClickListener {
+            AppPreference.incCurrentMonth()
+            updateText()
+        }
     }
 
     override fun onResume() {

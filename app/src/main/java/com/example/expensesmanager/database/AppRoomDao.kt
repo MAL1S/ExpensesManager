@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.expensesmanager.models.Record
 import com.example.expensesmanager.models.Source
+import com.example.expensesmanager.utils.AppPreference
 import com.example.expensesmanager.utils.EXPENSE
 import com.example.expensesmanager.utils.INCOME
 
@@ -34,11 +35,11 @@ interface AppRoomDao {
     @Query("SELECT SUM(moneyAmount) FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.category=:cat")
     fun getTotalIncomeMoney(cat: String = INCOME): Int
 
-    @Query("SELECT * FROM source_table WHERE category=:value GROUP BY totalMoneyAmount")
-    fun getAllExpensesSources(value: String = EXPENSE): LiveData<List<Source>>
+    @Query("SELECT * FROM source_table WHERE category=:value AND year = :year AND month = :month GROUP BY totalMoneyAmount")
+    fun getAllExpensesSources(month: Int = AppPreference.getCurrentMonth(), year: Int = AppPreference.getCurrentYear(), value: String = EXPENSE): LiveData<List<Source>>
 
-    @Query("SELECT * FROM source_table WHERE category=:value GROUP BY totalMoneyAmount")
-    fun getAllIncomeSources(value: String = INCOME): LiveData<List<Source>>
+    @Query("SELECT * FROM source_table WHERE category=:value AND year = :year AND month = :month  GROUP BY totalMoneyAmount")
+    fun getAllIncomeSources(month: Int = AppPreference.getCurrentMonth(), year: Int = AppPreference.getCurrentYear(), value: String = INCOME): LiveData<List<Source>>
 
     @Query("SELECT record_table.* FROM record_table JOIN source_table ON record_table.sourceId = source_table.id WHERE source_table.id = :id")
     fun getAllFromSource(id: Int): LiveData<List<Record>>

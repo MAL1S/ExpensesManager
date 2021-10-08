@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white">
 
-        <View
+        <Button
             android:id="@+id/btn_calendar_left"
             android:layout_width="50dp"
             android:layout_height="50dp"
@@ -32,7 +32,7 @@
             android:layout_gravity="center"
             tools:text="September 2021" />
 
-        <View
+        <Button
             android:id="@+id/btn_calendar_right"
             android:layout_width="50dp"
             android:layout_height="50dp"
