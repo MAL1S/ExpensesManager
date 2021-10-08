@@ -1,10 +1,10 @@
 package com.example.expensesmanager.ui.add_new_type
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentAddNewSourceBinding
@@ -45,7 +45,15 @@ class AddNewSourceFragment : Fragment() {
             val s = mBinding.inputSource.text.toString()
             val t = if (CURRENT_TAB == 0) EXPENSE
             else INCOME
-            mViewModel.insertSource(Source(source = s, category = t, year = AppPreference.getCurrentYear(), month = AppPreference.getCurrentMonth())) {
+
+            mViewModel.insertSource(
+                Source(
+                    source = s,
+                    category = t,
+                    year = AppPreference.getCurrentYear(),
+                    month = AppPreference.getCurrentMonth()
+                )
+            ) {
                 APP_ACTIVITY.navController.navigate(R.id.action_addNewSourceFragment_to_pageViewerSourceFragment)
             }
         }

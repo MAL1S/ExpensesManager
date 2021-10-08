@@ -33,9 +33,9 @@ class AppRoomRepository(private val appRoomDao: AppRoomDao) {
         return appRoomDao.getSourceId(category, source)
     }
 
-    suspend fun insert(record: Record, onSuccess: () -> Unit) {
+    suspend fun insert(record: Record) {
         appRoomDao.insert(record)
-        onSuccess()
+        //onSuccess()
     }
 
     suspend fun delete(record: Record, onSuccess: () -> Unit) {
@@ -43,9 +43,9 @@ class AppRoomRepository(private val appRoomDao: AppRoomDao) {
         onSuccess()
     }
 
-    suspend fun insertSource(source: Source, onSuccess: () -> Unit) {
+    suspend fun insertSource(source: Source) {
         appRoomDao.insert(source)
-        onSuccess()
+        //onSuccess()
     }
 
     suspend fun deleteSource(source: Source, onSuccess: () -> Unit) {

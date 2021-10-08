@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.expensesmanager.R
 import com.example.expensesmanager.databinding.FragmentAddNewRecordBinding
 import com.example.expensesmanager.models.Record
-import com.example.expensesmanager.models.Source
 import com.example.expensesmanager.utils.*
 import java.util.*
 

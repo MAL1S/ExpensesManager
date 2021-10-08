@@ -12,10 +12,10 @@ class AddNewRecordViewModel : ViewModel() {
 
     fun insert(record: Record, onSuccess: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
-            REPOSITORY.insert(record) {
-                onSuccess()
-            }
+            log(record.id.toString())
+            REPOSITORY.insert(record)
         }
+        onSuccess()
     }
 
 //    fun getId(category: String, source: String): List<Source> {
